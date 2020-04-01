@@ -1,6 +1,6 @@
 package com.automation.tests.vytrack.login;
 
-import com.automation.tests.utilities.BrowserUtils;
+import com.automation.utilities.BrowserUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -43,7 +43,7 @@ public class LoginPageTests {
     @Test(description = "Login as store manager and verify that tile is equals to Dashboard")
     public void loginAsStoreManager(){
         driver.findElement(usernameBy).sendKeys(username);
-        driver.findElement(passwordBy).sendKeys(password, Keys.ENTER);
+        driver.findElement(passwordBy).sendKeys(password + Keys.ENTER);
         BrowserUtils.wait(5);
 
         String expected = "Dashboard";
