@@ -1,4 +1,4 @@
-package com.automation.tests.utilities;
+package com.automation.utilities;
 import java.io.FileInputStream;
 import java.util.Properties;
 public class ConfigurationReader {
@@ -27,6 +27,8 @@ public class ConfigurationReader {
      * @return property value
      */
     public static String getProperty(String keyName) {
+
+
         return configFile.getProperty(keyName);
     }
 }

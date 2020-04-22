@@ -6,13 +6,33 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class PageBase {
-protected WebDriver driver = Driver.getDriver();
-    public PageBase(){
+public abstract class BasePage {
+
+
+
+    protected WebDriver driver = Driver.getDriver();
+    protected WebDriverWait wait = new WebDriverWait(driver, 15);
+
+
+    @FindBy(css = "#user-menu > a")
+    protected WebElement currentUser;
+
+
+    public BasePage(){
         PageFactory.initElements(driver, this);
     }
+
+    public String getCurrentUserName(){
+        BrowserUtils.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(currentUser));
+        return currentUser.getText().trim();
+    }
+
 
 
     /**
@@ -22,8 +42,8 @@ protected WebDriver driver = Driver.getDriver();
      */
     public void navigateTo(String tabName, String moduleName){
 
-        tabName=tabName.substring(0,1).toUpperCase()+tabName.substring(1 ).toLowerCase();
-        moduleName=moduleName.substring(0,1).toUpperCase()+moduleName.substring(1 ).toLowerCase();
+//        tabName=tabName.substring(0,1).toUpperCase()+tabName.substring(1 ).toLowerCase();
+//        moduleName=moduleName.substring(0,1).toUpperCase()+moduleName.substring(1 ).toLowerCase();
         String tabNameXpath = "//span[@class='title title-level-1' and contains(text(),'"+tabName+"')]";
         String moduleXpath = "//span[@class='title title-level-2' and contains(text(),'"+moduleName+"')]";
 
@@ -37,7 +57,10 @@ protected WebDriver driver = Driver.getDriver();
                 pause(1000).
                 click(moduleElement).
                 build().perform();
+        BrowserUtils.wait(10);
     }
+
+
 
 
 }

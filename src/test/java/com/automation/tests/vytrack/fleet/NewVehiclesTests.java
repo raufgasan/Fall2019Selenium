@@ -1,23 +1,25 @@
 package com.automation.tests.vytrack.fleet;
 
+import com.automation.pages.BasePage;
 import com.automation.pages.LoginPage;
 import com.automation.pages.t2_Fleet.VehiclesPage;
 import com.automation.tests.vytrack.TestBase;
+import com.automation.utilities.Driver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class NewVehiclesPageTests extends TestBase {
+public class NewVehiclesTests extends TestBase {
 
     @Test
     public void verifyTitle(){
         LoginPage loginPage = new LoginPage();
-        VehiclesPage vehiclesPage = new VehiclesPage();
+        BasePage vehiclesPage = new VehiclesPage();
 
         loginPage.login();
-        vehiclesPage.navigateTo("fleet", "VehIcles");
+        vehiclesPage.navigateTo("Fleet", "Vehicles");
 
         String expectedTitle = "All - Car - Entities - System - Car - Entities - System";
-        String actualTittle = driver.getTitle();
+        String actualTittle =  Driver.getDriver().getTitle();
 
         Assert.assertEquals(actualTittle, expectedTitle);
 

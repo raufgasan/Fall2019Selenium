@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Calls extends BasePage {
+public class CallsPage extends BasePage {
 
     @FindBy (css="[title='Log call']")
     private WebElement createLogCall;
